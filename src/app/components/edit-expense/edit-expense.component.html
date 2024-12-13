@@ -1,0 +1,97 @@
+
+<div *ngIf="!editable">
+    <div *ngIf="expense.id">
+      <h4>Expense</h4>
+      <div>
+        <label><strong>Expense Category:</strong></label> 
+        {{ expense.expenseCategory }}
+      </div>
+      <div>
+        <label><strong>Expense Description:</strong></label>
+        {{ expense.expenseDescription }}
+      </div>
+      <div>
+        <label><strong>Expense Amount:</strong></label>
+        {{ expense.expenseAmount }}
+      </div>
+      <div>
+        <label><strong>Expense Date:</strong></label>
+        {{ expense.expenseDate }}
+      </div>
+      <a
+        class="badge badge-warning"
+        routerLink="/expenses/{{ expense.id }}"
+      >
+        Edit
+      </a>
+</div>
+  
+<ng-template #editable>
+<div *ngIf="expense.id" class="edit-form">
+    <h4>Expense</h4>
+
+    <form>
+    <div class="form-group">
+        <label for="expenseCategory">Expense Category</label>
+        <input
+        type="text"
+        class="form-control"
+        id="expenseCategory"
+        name="expenseCategory"
+        [(ngModel)]="expense.expenseCategory"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="expenseDescription">Expense Description</label>
+        <input
+            type="text"
+            class="form-control"
+            id="expenseDescription"
+            name="expenseDescription"
+            [(ngModel)]="expense.expenseDescription"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="expenseAmount">Expense Amount</label>
+        <input
+            type="text"
+            class="form-control"
+            id="expenseAmount"
+            name="expenseAmount"
+            [(ngModel)]="expense.expenseAmount"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="expenseDate">Expense Date</label>
+        <input
+            type="text"
+            class="form-control"
+            id="expenseDate"
+            name="expenseDate"
+            [(ngModel)]="expense.expenseDate"
+        />
+    </div>
+
+    </form>
+
+    <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateExpense()"
+        >
+        Update
+    </button>
+
+    <button 
+        class="badge badge-danger mr-2" 
+        (click)="deleteExpense()"
+        >
+        Delete
+    </button>
+
+</div>
+
+</ng-template>
